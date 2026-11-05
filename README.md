@@ -33,7 +33,7 @@ var configuration = configurationBuilder
 var validationResult = validator.Validate(pathToInvoiceXml, configuration);
 ```
 
-The whole project was inspired by the reference implementation from KoSIT (Thanks!), but i also added my own ideas:
+The whole project is inspired by the reference implementation from KoSIT (Thanks!), but i also added my own ideas:
 - independence from the concrete XML processing implementation
 - the possibility to declare configurations entirely in code, without using a scenarios.xml file
 - the possibility to access validation results directly as typed C# objects through the ValidationResult,
@@ -77,4 +77,4 @@ validation steps are separately tested)
 - tests the adapter implementation
 
 # License
-This Project is free to use and licensed under the MIT licencse.
+This Project is free to use and licensed under the MIT license.
