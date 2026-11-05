@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<in:Invoice xmlns:in="urn:test:schema:invoice"
+            xmlns:a="urn:test:schema:address"
+            Currency="EUR">
+  <in:Id>I-1</in:Id>
+  <in:TotalAmount>100.50</in:TotalAmount>
+  <in:Address>
+    <a:Street>Main Street 1</a:Street>
+    <a:City>Berlin</a:City>
+  </in:Address>
+</in:Invoice>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<in:Invoice xmlns:in="urn:test:schema:invoice"
+            xmlns:a="urn:test:schema:address">
+  <in:Id>I-1</in:Id>
+  <in:TotalAmount>not-a-decimal</in:TotalAmount>
+  <in:Address>
+    <a:City>Berlin</a:City>
+  </in:Address>
+</in:Invoice>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Mimics the W3C "UBL-xmldsig-core-schema-2.1.xsd" of the official XRechnung configuration:
+     a schema document with a DOCTYPE internal subset. The entity "currencyCode" is actually
+     referenced below, so a naive DOCTYPE removal without entity expansion would break this schema. -->
+<!DOCTYPE schema [
+  <!ENTITY currencyCode 'EUR'>
+]>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:c="urn:test:schema:dtdcommon"
+        targetNamespace="urn:test:schema:dtdcommon"
+        elementFormDefault="qualified">
+
+  <simpleType name="CurrencyCodeType">
+    <restriction base="string">
+      <enumeration value="&currencyCode;"/>
+    </restriction>
+  </simpleType>
+
+  <complexType name="MoneyType">
+    <attribute name="amount" type="decimal" use="required"/>
+    <attribute name="currency" type="c:CurrencyCodeType" use="required"/>
+  </complexType>
+
+  <element name="Money" type="c:MoneyType"/>
+
+</schema>

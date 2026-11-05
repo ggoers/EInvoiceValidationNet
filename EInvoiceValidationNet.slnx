@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EInvoiceValidation.XsltProcessor/EInvoiceValidationNet.XmlProcessing.csproj" />
+    <Project Path="src/EInvoiceValidationNet.Core/EInvoiceValidationNet.Core.csproj" />
+    <Project Path="src/EInvoiceValidationNet.Nuget/EInvoiceValidationNet.Nuget.csproj" Id="9fb8199b-e1d7-49a2-bcff-0e3f881011cb" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EInvoiceValidationNet.Core.Tests/EInvoiceValidationNet.Core.Tests.csproj" Id="4b1b9aea-ef34-4e35-916f-42e08ee0a0df" />
+    <Project Path="tests/EInvoiceValidationNet.IntegrationTests/EInvoiceValidationNet.IntegrationTests.csproj" Id="34a2eb47-6dba-4f64-8a5b-b0e73d220585" />
+    <Project Path="tests/EInvoiceValidationNet.XmlProcessing.Tests/EInvoiceValidationNet.XmlProcessing.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Validation\ReportTransformation\Framework\createReportInput.xsd" LogicalName="createReportInput.xsd" />
+    <EmbeddedResource Include="Validation\ReportTransformation\Framework\scenarios.xsd" LogicalName="scenarios.xsd" />
+    <EmbeddedResource Include="Validation\ReportTransformation\Framework\svrl-kosit.xsd" LogicalName="svrl-kosit.xsd" />
+    <EmbeddedResource Include="Validation\ReportTransformation\Framework\xml.xsd" LogicalName="xml.xsd" />
+  </ItemGroup>
+
+</Project>

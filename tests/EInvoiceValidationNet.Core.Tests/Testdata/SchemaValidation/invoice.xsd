@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:in="urn:test:schema:invoice"
+           xmlns:a="urn:test:schema:address"
+           targetNamespace="urn:test:schema:invoice"
+           elementFormDefault="qualified">
+
+  <xs:import namespace="urn:test:schema:address" schemaLocation="address.xsd"/>
+
+  <xs:element name="Invoice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Id" type="xs:string"/>
+        <xs:element name="TotalAmount" type="xs:decimal"/>
+        <xs:element name="Address" type="a:AddressType"/>
+      </xs:sequence>
+      <xs:attribute name="Currency" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

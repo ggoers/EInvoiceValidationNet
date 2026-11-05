@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Imports the DOCTYPE-carrying schema with a bare relative location, mimicking the official
+     UBL 2.1 topology (maindoc schema importing "common" schemas located in the same folder). -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:d="urn:test:schema:dtdcommon"
+        targetNamespace="urn:test:schema:dtdinvoice"
+        elementFormDefault="qualified">
+
+  <import namespace="urn:test:schema:dtdcommon" schemaLocation="dtd-common.xsd"/>
+
+  <element name="Invoice">
+    <complexType>
+      <sequence>
+        <element name="Id" type="string"/>
+        <element name="Total" type="d:MoneyType"/>
+      </sequence>
+    </complexType>
+  </element>
+
+</schema>
