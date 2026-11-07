@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 // they are hidden from IntelliSense via EditorBrowsable and deliberately not documented.
 #pragma warning disable CS1591
 
-namespace EInvoiceValidationNet.Core.Configuration.ScenarioXml
+namespace EInvoiceValidationNet.Configuration.ScenarioXml
 {
     //this unit holds the objects which represent the scenarios.xml from the validation configurations (use with XmlSerializer)
     //it is only internal for reading the XML and mapping it to the official public Configuration object

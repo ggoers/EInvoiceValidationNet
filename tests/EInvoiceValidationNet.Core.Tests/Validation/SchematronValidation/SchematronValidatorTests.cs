@@ -1,7 +1,7 @@
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
 
 namespace EInvoiceValidationNet.Core.Tests.Validation.SchematronValidation
 {

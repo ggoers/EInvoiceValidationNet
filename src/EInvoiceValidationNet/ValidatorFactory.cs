@@ -1,9 +1,9 @@
-using EInvoiceValidationNet.Core.Validation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Validation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 using EInvoiceValidationNet.XmlProcessing;
 
-namespace EInvoiceValidationNet.Nuget;
+namespace EInvoiceValidationNet;
 
 /// <summary>
 /// Creates validators that are wired with the XML processing bundled in this package (Saxon-based, XSLT 2.0 / XPath 2.0).
@@ -23,7 +23,7 @@ public class ValidatorFactory
         var xmlProcessing = new SaxonXmlProcessing();
         var schemaValidator = new SchemaValidator();
         var schematronValidator = new SchematronValidator(xmlProcessing);
-        
+
         return new Validator(xmlProcessing, schemaValidator, schematronValidator);
-    } 
+    }
 }

@@ -1,5 +1,5 @@
-﻿using EInvoiceValidationNet.Core.Configuration.ScenarioXml;
-using EInvoiceValidationNet.Core.Validation.ReportTransformation;
+﻿using EInvoiceValidationNet.Configuration.ScenarioXml;
+using EInvoiceValidationNet.Validation.ReportTransformation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using EInvoiceValidationNet.Core.Utils;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Builds an immutable <see cref="Configuration"/>, either fluently in code or from a configuration file (<c>scenarios.xml</c>).

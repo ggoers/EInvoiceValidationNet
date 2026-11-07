@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 // they are hidden from IntelliSense via EditorBrowsable and deliberately not documented.
 #pragma warning disable CS1591
 
-namespace EInvoiceValidationNet.Core.Validation.SchematronValidation.SVRLParsing
+namespace EInvoiceValidationNet.Validation.SchematronValidation.SVRLParsing
 {
     //this unit holds the objects which represent the SVRL document produced by a schematron transformation (use with XmlSerializer)
     //it is only internal for reading the XML and mapping it to the official public SchematronValidationResult

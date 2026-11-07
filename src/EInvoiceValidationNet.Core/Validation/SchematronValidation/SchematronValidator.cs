@@ -1,10 +1,10 @@
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation.SVRLParsing;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation.SchematronValidation.SVRLParsing;
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation.SchematronValidation
+namespace EInvoiceValidationNet.Validation.SchematronValidation
 {
     internal class SchematronValidator : ISchematronValidator
     {

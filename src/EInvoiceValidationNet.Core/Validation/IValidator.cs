@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     /// <summary>
     /// Validates an e-invoice against a <see cref="Configuration.Configuration"/>.

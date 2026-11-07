@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Immutable validation configuration: the scenarios used to validate e-invoices plus the optional report

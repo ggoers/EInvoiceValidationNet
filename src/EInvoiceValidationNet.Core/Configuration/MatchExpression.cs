@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// An Expression which returns a Boolean (used to find the matching scenario or to evaluate if an invoice is accepted after validation).

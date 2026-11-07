@@ -1,4 +1,4 @@
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     /// <summary>
     /// Identifies this engine in the intermediate report input document and the validation reports created from it.

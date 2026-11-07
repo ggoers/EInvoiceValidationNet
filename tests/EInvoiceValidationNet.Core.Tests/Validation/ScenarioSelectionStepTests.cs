@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation;
 
 namespace EInvoiceValidationNet.Core.Tests.Validation
 {
-    using Configuration = EInvoiceValidationNet.Core.Configuration.Configuration;
+    using Configuration = EInvoiceValidationNet.Configuration.Configuration;
 
     public class ScenarioSelectionStepTests
     {

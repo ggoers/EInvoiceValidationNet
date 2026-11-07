@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// One validation pipeline: how a scenario is matched to an invoice, which schema and Schematron validations run,

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     /// <summary>
     /// The outcome of validating one invoice: whether the input could be parsed, which validation steps ran, what

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
+namespace EInvoiceValidationNet.Validation.SchemaValidation
 {
     /// <summary>
     /// Severity of a finding produced by the XML schema (XSD) validation.

@@ -1,4 +1,4 @@
-﻿using EInvoiceValidationNet.Core.Validation;
+﻿using EInvoiceValidationNet.Validation;
 using Saxon.Api;
 using System.Collections.Concurrent;
 using System.Xml.Linq;

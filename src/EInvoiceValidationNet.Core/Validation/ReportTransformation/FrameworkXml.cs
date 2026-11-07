@@ -1,4 +1,4 @@
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     /// <summary>
     /// The XML namespaces and identifiers of the KoSIT validation framework's intermediate report input format,

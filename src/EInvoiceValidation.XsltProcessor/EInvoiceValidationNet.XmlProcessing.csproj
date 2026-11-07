@@ -16,7 +16,7 @@
   
   <ItemGroup>
     <InternalsVisibleTo Include="EInvoiceValidationNet.XmlProcessing.Tests" />
-    <InternalsVisibleTo Include="EInvoiceValidationNet.Nuget" />
+    <InternalsVisibleTo Include="EInvoiceValidationNet" />
   </ItemGroup>
 
 </Project>

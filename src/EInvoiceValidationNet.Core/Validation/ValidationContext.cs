@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
-using ValidationConfiguration = EInvoiceValidationNet.Core.Configuration.Configuration;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
+using ValidationConfiguration = EInvoiceValidationNet.Configuration.Configuration;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     internal class ValidationContext
     {

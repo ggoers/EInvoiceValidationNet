@@ -1,6 +1,6 @@
 using System;
 
-namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
+namespace EInvoiceValidationNet.Validation.SchemaValidation
 {
     internal class SchemaValidationStep : IValidationStep
     {

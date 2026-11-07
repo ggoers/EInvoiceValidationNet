@@ -1,6 +1,6 @@
 using System;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// A namespace prefix declaration (prefix to URI) that is available to the XPath expressions of a scenario

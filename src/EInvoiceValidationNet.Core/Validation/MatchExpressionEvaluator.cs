@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
+using EInvoiceValidationNet.Configuration;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     internal sealed class MatchExpressionEvaluator
     {

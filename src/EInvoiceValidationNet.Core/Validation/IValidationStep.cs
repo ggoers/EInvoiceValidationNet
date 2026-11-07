@@ -1,4 +1,4 @@
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     internal interface IValidationStep
     {

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation;
 
 namespace EInvoiceValidationNet.Core.Tests.Validation
 {

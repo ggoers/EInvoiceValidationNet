@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
 
-namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
+namespace EInvoiceValidationNet.Validation.SchemaValidation
 {
     /// <summary>
     /// Schema validation based on the BCL <see cref="System.Xml.Schema"/> namespace.

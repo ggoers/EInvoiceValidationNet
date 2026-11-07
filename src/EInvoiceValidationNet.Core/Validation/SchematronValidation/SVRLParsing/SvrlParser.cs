@@ -2,7 +2,7 @@ using System;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace EInvoiceValidationNet.Core.Validation.SchematronValidation.SVRLParsing
+namespace EInvoiceValidationNet.Validation.SchematronValidation.SVRLParsing
 {
     internal static class SvrlParser
     {

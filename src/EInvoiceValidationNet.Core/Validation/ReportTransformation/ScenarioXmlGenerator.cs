@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
+using EInvoiceValidationNet.Configuration;
 
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     /// <summary>
     /// Generates the <c>s:scenario</c> element that is embedded in the report input for scenarios that were configured

@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
+using EInvoiceValidationNet.Configuration;
 
-namespace EInvoiceValidationNet.Core.Validation.SchematronValidation
+namespace EInvoiceValidationNet.Validation.SchematronValidation
 {
     internal interface ISchematronValidator
     {

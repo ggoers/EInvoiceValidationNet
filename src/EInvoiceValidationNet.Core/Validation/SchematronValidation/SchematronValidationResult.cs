@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation.SchematronValidation
+namespace EInvoiceValidationNet.Validation.SchematronValidation
 {
     /// <summary>
     /// Severity of a Schematron assertion, taken from the <c>flag</c> attribute of the SVRL <c>failed-assert</c>.

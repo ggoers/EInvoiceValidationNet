@@ -1,14 +1,14 @@
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 
 namespace EInvoiceValidationNet.Core.Tests.Validation
 {
-    using Configuration = EInvoiceValidationNet.Core.Configuration.Configuration;
+    using Configuration = EInvoiceValidationNet.Configuration.Configuration;
 
     public class ValidatorTests
     {

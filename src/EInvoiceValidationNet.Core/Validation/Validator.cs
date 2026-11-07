@@ -4,13 +4,13 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Validation.ReportTransformation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Validation.ReportTransformation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
-    using Configuration = EInvoiceValidationNet.Core.Configuration.Configuration;
+    using Configuration = EInvoiceValidationNet.Configuration.Configuration;
 
     internal sealed class Validator : IValidator
     {

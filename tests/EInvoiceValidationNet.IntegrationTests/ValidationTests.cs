@@ -1,9 +1,8 @@
-using System.Security.Cryptography;
-using EInvoiceValidationNet.Core.Configuration;
+using EInvoiceValidationNet.Configuration;
 using EInvoiceValidationNet.Core.Utils;
-using EInvoiceValidationNet.Core.Validation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation;
-using EInvoiceValidationNet.Nuget;
+using EInvoiceValidationNet.Validation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using System.Security.Cryptography;
 using System.Xml.Linq;
 
 namespace EInvoiceValidationNet.IntegrationTests;
@@ -32,7 +31,7 @@ public class ValidationTests
 
     private IValidator _validator;
 
-    private Configuration _configuration;
+    private Configuration.Configuration _configuration;
 
     [SetUp]
     public void Setup()

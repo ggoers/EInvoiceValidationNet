@@ -5,10 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation.SVRLParsing;
+using EInvoiceValidationNet.Validation.SchemaValidation;
+using EInvoiceValidationNet.Validation.SchematronValidation.SVRLParsing;
 
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     /// <summary>
     /// Builds the intermediate <c>createReportInput</c> document that the report transformations consume from the

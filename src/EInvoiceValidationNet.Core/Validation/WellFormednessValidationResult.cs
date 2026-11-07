@@ -1,6 +1,6 @@
 using System;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     /// <summary>
     /// Result of the well-formedness check, i.e. whether the invoice XML could be read and parsed.

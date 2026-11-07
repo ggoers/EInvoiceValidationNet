@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Configuration;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Configuration;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     internal sealed class ReportTransformationStep : IValidationStep
     {

@@ -1,5 +1,5 @@
 using System.Xml.Linq;
-using EInvoiceValidationNet.Core.Validation.SchemaValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
 
 namespace EInvoiceValidationNet.Core.Tests.Validation.SchemaValidation
 {

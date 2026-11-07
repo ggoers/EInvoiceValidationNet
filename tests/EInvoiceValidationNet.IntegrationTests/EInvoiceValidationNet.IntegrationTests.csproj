@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\EInvoiceValidationNet.Core\EInvoiceValidationNet.Core.csproj" />
-    <ProjectReference Include="..\..\src\EInvoiceValidationNet.Nuget\EInvoiceValidationNet.Nuget.csproj" />
+    <ProjectReference Include="..\..\src\EInvoiceValidationNet.Nuget\EInvoiceValidationNet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

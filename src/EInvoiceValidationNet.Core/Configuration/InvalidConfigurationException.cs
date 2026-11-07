@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Signals that a configuration is incomplete or inconsistent, e.g. a scenario without a validation step,

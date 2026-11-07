@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation
+namespace EInvoiceValidationNet.Validation
 {
     internal sealed class AcceptanceStep : IValidationStep
     {

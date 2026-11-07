@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     /// <summary>
     /// Provides the file path of the framework's <c>createReportInput</c> schema, which the validator uses to

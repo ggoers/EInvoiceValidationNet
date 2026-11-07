@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using EInvoiceValidationNet.Core.Configuration;
+using EInvoiceValidationNet.Configuration;
 using EInvoiceValidationNet.Core.Utils;
 
 namespace EInvoiceValidationNet.Core.Tests.Configuration

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
+namespace EInvoiceValidationNet.Validation.SchemaValidation
 {
     /// <summary>
     /// Validates an already parsed (well-formed) e-invoice against the XML schema of a scenario.

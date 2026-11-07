@@ -1,13 +1,13 @@
 using System.ComponentModel;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using EInvoiceValidationNet.Core.Validation.SchematronValidation.SVRLParsing;
+using EInvoiceValidationNet.Validation.SchematronValidation.SVRLParsing;
 
 // The serialization models are an implementation detail that System.Xml.Serialization requires to be public;
 // they are hidden from IntelliSense via EditorBrowsable and deliberately not documented.
 #pragma warning disable CS1591
 
-namespace EInvoiceValidationNet.Core.Validation.ReportTransformation
+namespace EInvoiceValidationNet.Validation.ReportTransformation
 {
     //this unit holds the objects which represent the intermediate createReportInput document (use with XmlSerializer)
     //they are only needed to serialize the report input and are mapped from the public validation result model

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Configures one Schematron validation step of a scenario (a <c>validateWithSchematron</c> element of <c>scenarios.xml</c>).

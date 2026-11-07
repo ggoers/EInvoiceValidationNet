@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Overrides the severity of a single business rule.

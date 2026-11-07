@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EInvoiceValidationNet.Core.Configuration
+namespace EInvoiceValidationNet.Configuration
 {
     /// <summary>
     /// Configures the XML schema (XSD) validation step of a scenario (the <c>validateWithXmlSchema</c> element of <c>scenarios.xml</c>).
