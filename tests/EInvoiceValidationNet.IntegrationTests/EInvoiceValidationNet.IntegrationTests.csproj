@@ -14,6 +14,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit.Analyzers" />
@@ -32,7 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\EInvoiceValidationNet.Core\EInvoiceValidationNet.Core.csproj" />
-    <ProjectReference Include="..\..\src\EInvoiceValidationNet.Nuget\EInvoiceValidationNet.csproj" />
+    <ProjectReference Include="..\..\src\EInvoiceValidationNet\EInvoiceValidationNet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

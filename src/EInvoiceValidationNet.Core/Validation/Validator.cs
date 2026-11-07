@@ -1,12 +1,12 @@
-﻿using System;
+﻿using EInvoiceValidationNet.Validation.ReportTransformation;
+using EInvoiceValidationNet.Validation.SchematronValidation;
+using EInvoiceValidationNet.Validation.SchemaValidation;
+using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Xml.Linq;
-using EInvoiceValidationNet.Validation.ReportTransformation;
-using EInvoiceValidationNet.Validation.SchematronValidation;
-using EInvoiceValidationNet.Validation.SchemaValidation;
 
 namespace EInvoiceValidationNet.Validation
 {

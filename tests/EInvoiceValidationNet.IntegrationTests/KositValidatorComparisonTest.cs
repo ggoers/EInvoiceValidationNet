@@ -32,7 +32,7 @@ namespace EInvoiceValidationNet.IntegrationTests
             var testsuitePath = GetAndCheckPath(configuration, "TESTSUITE_DIR_PATH", Directory.Exists);
 
 
-            var validator = new ValidatorFactory().CreateValidator();
+            var validator = new EInvoiceValidationNet.ValidatorFactory().CreateValidator();
             var myConfiguration = EInvoiceValidationNet.Configuration.ConfigurationBuilder.FromScenariosXml(scenarioXml, Path.GetDirectoryName(scenarioXml));
 
             var watch = new Stopwatch();

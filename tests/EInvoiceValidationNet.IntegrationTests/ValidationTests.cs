@@ -1,5 +1,3 @@
-using EInvoiceValidationNet.Configuration;
-using EInvoiceValidationNet.Core.Utils;
 using EInvoiceValidationNet.Validation;
 using EInvoiceValidationNet.Validation.SchematronValidation;
 using System.Security.Cryptography;
@@ -18,7 +16,7 @@ namespace EInvoiceValidationNet.IntegrationTests;
 /// - no scenario matched
 /// each outcome must also produce the expected validation report
 /// </summary>
-public class ValidationTests
+public class ValidationTests : IntegrationTestBase
 {
     private static readonly XNamespace VarlNamespace = "http://www.xoev.de/de/validator/varl/1";
 
@@ -27,28 +25,19 @@ public class ValidationTests
     private static readonly XNamespace ReportInputNamespace =
         "http://www.xoev.de/de/validator/framework/1/createreportinput";
 
-    private static readonly string TestdataDirectory = Path.Combine(AppContext.BaseDirectory, "Testdata");
-
     private IValidator _validator;
-
-    private Configuration.Configuration _configuration;
 
     [SetUp]
     public void Setup()
     {
         var validatorFactory = new ValidatorFactory();
         _validator = validatorFactory.CreateValidator();
-
-        var scenariosXmlPath =
-            Path.Combine(TestdataDirectory, "xrechnung_validator_configuration/scenarios.xml")
-                .NormalizePath();
-        _configuration = ConfigurationBuilder.FromScenariosXml(scenariosXmlPath, Path.GetDirectoryName(scenariosXmlPath), null);
     }
 
     [Test]
     public void Validate_UBL_Success()
     {
-        var result = ValidateInvoice("ubl_success.xml");
+        var result = ValidateInvoice(_validator, "ubl_success.xml");
 
         Assert.Multiple(() =>
         {
@@ -87,7 +76,7 @@ public class ValidationTests
     [Test]
     public void Validate_CII_Success()
     {
-        var result = ValidateInvoice("cii_success.xml");
+        var result = ValidateInvoice(_validator, "cii_success.xml");
 
         Assert.Multiple(() =>
         {
@@ -113,7 +102,7 @@ public class ValidationTests
     [Test]
     public void Validate_UBL_Schema_Validation_Failure()
     {
-        var result = ValidateInvoice("ubl_schemavalidation_failure.xml");
+        var result = ValidateInvoice(_validator, "ubl_schemavalidation_failure.xml");
 
         Assert.Multiple(() =>
         {
@@ -137,7 +126,7 @@ public class ValidationTests
     [Test]
     public void Validate_CII_Schema_Validation_Failure()
     {
-        var result = ValidateInvoice("cii_schemavalidation_failure.xml");
+        var result = ValidateInvoice(_validator, "cii_schemavalidation_failure.xml");
         Assert.Multiple(() =>
         {
             Assert.That(result.SchemaValidationResult.IsValid, Is.False);
@@ -160,7 +149,7 @@ public class ValidationTests
     [Test]
     public void Validate_UBL_Schematron_Validation_Failure()
     {
-        var result = ValidateInvoice("ubl_schematronvalidation_failure.xml");
+        var result = ValidateInvoice(_validator, "ubl_schematronvalidation_failure.xml");
 
         Assert.Multiple(() =>
         {
@@ -190,7 +179,7 @@ public class ValidationTests
     [Test]
     public void Validate_CII_Schematron_Validation_Failure()
     {
-        var result = ValidateInvoice("cii_schematronvalidation_failure.xml");
+        var result = ValidateInvoice(_validator, "cii_schematronvalidation_failure.xml");
 
         Assert.Multiple(() =>
         {
@@ -220,7 +209,7 @@ public class ValidationTests
     [Test]
     public void Validate_Malformed_ShoudResultInStatusParsingInputXmlFailed()
     {
-        var result = ValidateInvoice("malformed_invoice.xml");
+        var result = ValidateInvoice(_validator, "malformed_invoice.xml");
 
         Assert.Multiple(() =>
         {
@@ -246,7 +235,7 @@ public class ValidationTests
     [Test]
     public void Validate_NoScenarioMatched_ShouldCreateNoScenarioReport()
     {
-        var result = ValidateInvoice("ubl_no_scenario.xml");
+        var result = ValidateInvoice(_validator, "ubl_no_scenario.xml");
 
         Assert.Multiple(() =>
         {
@@ -266,11 +255,6 @@ public class ValidationTests
             Assert.That(result.ProcessingErrors, Is.Empty);
             Assert.That(result.IsAccepted, Is.False);
         });
-    }
-
-    private ValidationResult ValidateInvoice(string fileName)
-    {
-        return _validator.Validate(Path.Combine(TestdataDirectory, fileName), _configuration);
     }
 
     private static void AssertReportIsValid(ValidationResult result, bool isValid)
