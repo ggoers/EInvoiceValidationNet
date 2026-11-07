@@ -6,11 +6,41 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageTags>xrechnung;e-rechnung;erechnung;einvoice;e-invoice;einvoicing;en16931;kosit;validator;validation;schematron;ubl;cii;xslt</PackageTags>
+
+    <PackageId>EInvoiceValidationNet</PackageId>
+    <Description>.NET implementation of the KoSIT validator for e-invoices (XRechnung, ZUGFeRD, ...).</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeProjectReferencesInPackage</TargetsForTfmSpecificBuildOutput>
+    <TargetsForTfmSpecificDebugSymbolsInPackage>$(TargetsForTfmSpecificDebugSymbolsInPackage);IncludeProjectReferenceSymbolsInPackage</TargetsForTfmSpecificDebugSymbolsInPackage>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EInvoiceValidation.XsltProcessor\EInvoiceValidationNet.XmlProcessing.csproj" />
-    <ProjectReference Include="..\EInvoiceValidationNet.Core\EInvoiceValidationNet.Core.csproj" />
+    <ProjectReference Include="..\EInvoiceValidation.XsltProcessor\EInvoiceValidationNet.XmlProcessing.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\EInvoiceValidationNet.Core\EInvoiceValidationNet.Core.csproj" PrivateAssets="all" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SaxonCS-HE" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <!-- DLLs + XML docs of the referenced projects into lib/net10.0 -->
+  <Target Name="IncludeProjectReferencesInPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.ReferenceSourceTarget)' == 'ProjectReference' And '%(ReferenceCopyLocalPaths.Extension)' != '.pdb'" />
+    </ItemGroup>
+  </Target>
+
+  <!-- PDBs of the referenced projects into the symbol package (.snupkg) -->
+  <Target Name="IncludeProjectReferenceSymbolsInPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <TfmSpecificDebugSymbolsFile Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.ReferenceSourceTarget)' == 'ProjectReference' And '%(ReferenceCopyLocalPaths.Extension)' == '.pdb'"  TargetFramework="$(TargetFramework)" />
+    </ItemGroup>
+  </Target>
 
 </Project>

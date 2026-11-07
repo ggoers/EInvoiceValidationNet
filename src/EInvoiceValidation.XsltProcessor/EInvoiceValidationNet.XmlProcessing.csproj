@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SaxonCS-HE" Version="13.1.0" />
+    <PackageReference Include="SaxonCS-HE" />
   </ItemGroup>
 
   <ItemGroup>
