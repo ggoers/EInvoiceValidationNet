@@ -36,7 +36,7 @@ namespace EInvoiceValidationNet.IntegrationTests
         }
 
         [Test]
-        public void CreateWithDependencyInjection_Factory_Validates()
+        public void CreateWithFactory_Validates()
         {
             var factory = new ValidatorFactory();
             var validator = factory.CreateValidator();

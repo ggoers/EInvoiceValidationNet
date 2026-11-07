@@ -10,6 +10,7 @@ namespace EInvoiceValidationNet.IntegrationTests
     // JAVA_PATH - path to the Java executable (optional, defaults to "java")
     // SCENARIOS_XML_PATH - path to a scenarios.xml (all required rules etc. are needed as specified by scenarios.xml, it is assumed that scenarios.xml lives in root of configuration dir)
     // TESTSUITE_DIR_PATH - path to a directory containing only the e-invoices to be used in the test
+    [Explicit]
     public class KositValidatorComparisonTests
     {
         [Test]
