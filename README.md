@@ -14,7 +14,7 @@ You can specify a validator configuration with the scenarios.xml file from the c
 ```csharp
 var validator = ValidatorFactory.CreateValidator();
 var configuration = ConfigurationBuilder.FromScenariosXml(scenariosXmlPath, configurationRootPath, null);
-var validationResult = valiator.Validate(pathToInvoiceXml, configuration);
+var validationResult = validator.Validate(pathToInvoiceXml, configuration);
 ```
 
 It is also possible to create the validation configuration entirely in code
