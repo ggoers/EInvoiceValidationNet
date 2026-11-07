@@ -26,7 +26,7 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <remarks>
     /// Only use this when the validator is resolved once and then kept, e.g. injected into your own singleton
-    /// service. Usefull if you don´t want to make your main project dependent of this library. Register as transient and resolve
+    /// service. Useful if you don´t want to make your main project dependent of this library. Register as transient and resolve
     /// a new instance for every use is not recommended, since the caching is not used then.
     /// </remarks>
     public static IServiceCollection AddEInvoiceValidatorTransient(this IServiceCollection services)
