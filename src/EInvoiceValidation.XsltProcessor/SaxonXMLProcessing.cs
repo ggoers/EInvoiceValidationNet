@@ -1,34 +1,47 @@
 ﻿using EInvoiceValidationNet.Core.Validation;
 using Saxon.Api;
-using Saxon.Hej.value;
+using System.Collections.Concurrent;
 using System.Xml.Linq;
 
 namespace EInvoiceValidationNet.XmlProcessing
 {
     internal class SaxonXmlProcessing : IXmlProcessing
     {
+        private readonly Processor _processor = new();
+
+        private readonly ConcurrentDictionary<string, Lazy<XsltExecutable>> _compiledXsltCache = new(StringComparer.OrdinalIgnoreCase);
+
+        private readonly ConcurrentDictionary<string, Lazy<XPathExecutable>> _compiledXPathCache = new(StringComparer.Ordinal);
+
         public bool EvaluateXPathBoolean(XDocument xmlDocument, string expression, IEnumerable<KeyValuePair<string, string>>? namespaces = null)
         {
             ArgumentNullException.ThrowIfNull(xmlDocument);
             ArgumentNullException.ThrowIfNull(expression);
 
-            var processor = new Processor();
-            var xPathCompiler = processor.NewXPathCompiler();
-            if (namespaces != null)
+            var namespacesList = namespaces?.ToList() ?? [];
+            var key = CreateXPathCacheKey(expression, namespacesList);
+            var compiledXPathLazy = _compiledXPathCache.GetOrAdd(key, (key) =>
             {
-                foreach (var namespaceDeclaration in namespaces)
+                return new Lazy<XPathExecutable>(() =>
                 {
-                    xPathCompiler.DeclareNamespace(namespaceDeclaration.Key, namespaceDeclaration.Value);
-                }
-            }
+                    var xPathCompiler = _processor.NewXPathCompiler();
+                    if (namespaces != null)
+                    {
+                        foreach (var namespaceDeclaration in namespacesList)
+                        {
+                            xPathCompiler.DeclareNamespace(namespaceDeclaration.Key, namespaceDeclaration.Value);
+                        }
+                    }
 
+                    return xPathCompiler.Compile(expression);
+                });
+            });
+
+            var selector = compiledXPathLazy.Value.Load();
             using var reader = xmlDocument.CreateReader();
-            var result = xPathCompiler.Evaluate($"boolean(({expression}))",
-                processor.NewDocumentBuilder().Build(reader));
+            selector.ContextItem = _processor.NewDocumentBuilder().Build(reader);
 
-            return result is not XdmAtomicValue atomicValue
-                ? throw new InvalidOperationException("The XPath expression must evaluate to a boolean value.")
-                : atomicValue.AsBoolean();
+            return selector.EffectiveBooleanValue();
         }
 
         public XDocument Transform(XDocument inputDocument, string xsltPath, IReadOnlyDictionary<string, XDocument>? parameters = null)
@@ -36,20 +49,38 @@ namespace EInvoiceValidationNet.XmlProcessing
             ArgumentNullException.ThrowIfNull(inputDocument);
             ArgumentNullException.ThrowIfNull(xsltPath);
 
-            var processor = new Processor();
-            var xsltCompiler = processor.NewXsltCompiler();
-            xsltCompiler.BaseUri = new Uri(Path.GetFullPath(xsltPath));
 
-            //TODO cache compiled XSLT (key: xsltPath)
-            XsltExecutable compiledXslt;
-            using (var xsltStream = File.OpenRead(xsltPath))
+            var key = Path.GetFullPath(xsltPath);
+            var compiledXsltLazy = _compiledXsltCache.GetOrAdd(key, (key) =>
             {
-                compiledXslt = xsltCompiler.Compile(xsltStream);
+                //the Lazy has LazyThreadSafetyMode.ExecutionAndPublication as default -> if two threads try to add a key -> factory is only executed once
+                return new Lazy<XsltExecutable>(() =>
+                {
+                    var xsltCompiler = _processor.NewXsltCompiler();
+                    xsltCompiler.BaseUri = new Uri(key);
+
+                    using (var xsltStream = File.OpenRead(key))
+                    {
+                        return xsltCompiler.Compile(xsltStream);
+                    }
+
+                });
+            });
+
+            XsltExecutable compiledXslt;
+            try
+            {
+                compiledXslt = compiledXsltLazy.Value;
+            }
+            catch (Exception)
+            {
+                _compiledXsltCache.TryRemove(new KeyValuePair<string, Lazy<XsltExecutable>>(key, compiledXsltLazy));
+                throw;
             }
 
             var transformer = compiledXslt.Load30();
             using var reader = inputDocument.CreateReader();
-            var input = processor.NewDocumentBuilder().Build(reader);
+            var input = _processor.NewDocumentBuilder().Build(reader);
             transformer.GlobalContextItem = input;
 
             if (parameters != null)
@@ -58,7 +89,7 @@ namespace EInvoiceValidationNet.XmlProcessing
                 foreach (var parameter in parameters)
                 {
                     using var parameterReader = parameter.Value.CreateReader();
-                    stylesheetParameters[new QName(parameter.Key)] = processor.NewDocumentBuilder().Build(parameterReader);
+                    stylesheetParameters[new QName(parameter.Key)] = _processor.NewDocumentBuilder().Build(parameterReader);
                 }
 
                 transformer.SetStylesheetParameters(stylesheetParameters);
@@ -68,6 +99,15 @@ namespace EInvoiceValidationNet.XmlProcessing
             transformer.ApplyTemplates(input, dest);
 
             return XDocument.Parse(dest.XdmNode.ToString());
+        }
+
+        private static string CreateXPathCacheKey(string expression, List<KeyValuePair<string, string>> namespaces)
+        {
+            var namespacesKey = String.Join('\0', namespaces
+                .OrderBy(x => x.Key, StringComparer.Ordinal)
+                .Select(x => $"{x.Key}={x.Value}"));
+
+            return $"{expression}\0{namespacesKey}";
         }
     }
 }

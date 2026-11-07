@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,8 +15,11 @@ namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
     /// </summary>
     internal class SchemaValidator : ISchemaValidator
     {
+        private readonly ConcurrentDictionary<string, Lazy<XmlSchemaSet>> _compiledXmlSchemaSetCache = new ConcurrentDictionary<string, Lazy<XmlSchemaSet>>(StringComparer.OrdinalIgnoreCase);
+
         public SchemaValidationResult Validate(XDocument invoiceXml, string xsdFilePath)
         {
+
             if (invoiceXml is null)
             {
                 throw new ArgumentNullException(nameof(invoiceXml));
@@ -33,39 +37,59 @@ namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
 
             try
             {
-                // XmlSchemaSet.XmlResolver defaults to null in modern .NET (unlike .NET Framework),
-                // so relative xsd:import/xsd:include schema locations would not be resolved without an explicit resolver.
-                var schemaSet = new XmlSchemaSet
+                var key = Path.GetFullPath(xsdFilePath);
+                var compiledSchemaSetLazy = _compiledXmlSchemaSetCache.GetOrAdd(key, (x) =>
                 {
-                    XmlResolver = new XmlUrlResolver()
-                };
+                    return new Lazy<XmlSchemaSet>(() =>
+                    {
+                        // XmlSchemaSet.XmlResolver defaults to null in modern .NET (unlike .NET Framework),
+                        // so relative xsd:import/xsd:include schema locations would not be resolved without an explicit resolver.
+                        var schemaSet = new XmlSchemaSet
+                        {
+                            XmlResolver = new XmlUrlResolver()
+                        };
 
-                // The schema document is read with our own reader: XmlSchemaSet reads resolver-supplied
-                // documents (transitive xsd:import/xsd:include) with an internal DtdProcessing.Prohibit
-                // reader, rejecting schema documents carrying a <!DOCTYPE> internal subset (e.g. the W3C
-                // "UBL-xmldsig-core-schema-2.1.xsd" shipped with the official XRechnung configuration) -
-                // via xsd:import the failure is even swallowed silently, surfacing later as a misleading
-                // "element is not declared" compile error. Reading the root schema with a DtdProcessing.Parse
-                // reader makes the set apply these reader settings to the imported/included schema documents
-                // as well
-                // XmlResolver = null keeps external DTD/entity access disabled for security reasons.
-                var readerSettings = new XmlReaderSettings
+                        // The schema document is read with our own reader: XmlSchemaSet reads resolver-supplied
+                        // documents (transitive xsd:import/xsd:include) with an internal DtdProcessing.Prohibit
+                        // reader, rejecting schema documents carrying a <!DOCTYPE> internal subset (e.g. the W3C
+                        // "UBL-xmldsig-core-schema-2.1.xsd" shipped with the official XRechnung configuration) -
+                        // via xsd:import the failure is even swallowed silently, surfacing later as a misleading
+                        // "element is not declared" compile error. Reading the root schema with a DtdProcessing.Parse
+                        // reader makes the set apply these reader settings to the imported/included schema documents
+                        // as well
+                        // XmlResolver = null keeps external DTD/entity access disabled for security reasons.
+                        var readerSettings = new XmlReaderSettings
+                        {
+                            DtdProcessing = DtdProcessing.Parse,
+                            XmlResolver = null
+                        };
+                        using (var schemaReader = XmlReader.Create(xsdFilePath, readerSettings))
+                        {
+                            schemaSet.Add(null, schemaReader);
+                        }
+
+                        schemaSet.Compile();
+
+                        return schemaSet;
+                    });
+                });
+
+                XmlSchemaSet compiledSchemaSet;
+                try
                 {
-                    DtdProcessing = DtdProcessing.Parse,
-                    XmlResolver = null
-                };
-                using (var schemaReader = XmlReader.Create(xsdFilePath, readerSettings))
-                {
-                    schemaSet.Add(null, schemaReader);
+                    compiledSchemaSet = compiledSchemaSetLazy.Value;
                 }
-
-                schemaSet.Compile();
+                catch
+                {
+                    _compiledXmlSchemaSetCache.TryRemove(key, out _);
+                    throw;
+                }
 
                 var errors = new List<XmlSyntaxError>();
                 var settings = new XmlReaderSettings
                 {
                     ValidationType = ValidationType.Schema,
-                    Schemas = schemaSet
+                    Schemas = compiledSchemaSet
                 };
                 settings.ValidationEventHandler += (sender, args) => errors.Add(MapError(args));
 
@@ -92,7 +116,7 @@ namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
             var severity = args.Severity == XmlSeverityType.Warning
                 ? XmlSyntaxErrorSeverity.Warning
                 : XmlSyntaxErrorSeverity.Error;
-            
+
             int? rowNumber = null;
             int? columnNumber = null;
             if (args.Exception is XmlSchemaException schemaException)

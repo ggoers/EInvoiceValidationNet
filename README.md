@@ -45,7 +45,8 @@ without having to generate a validation report
 Feedback is welcome.
 
 Some planned improvements:
-- [ ] implement caching for the xslt transformations
+- [x] implement caching for the xslt transformations
+- [ ] comparison test with the java KoSIT validator
 - [ ] add tests with other configurations than XRechnung
 - [ ] add CI/CD in github
 - [ ] first release
