@@ -25,12 +25,9 @@ namespace EInvoiceValidationNet.XmlProcessing
                 return new Lazy<XPathExecutable>(() =>
                 {
                     var xPathCompiler = _processor.NewXPathCompiler();
-                    if (namespaces != null)
+                    foreach (var namespaceDeclaration in namespacesList)
                     {
-                        foreach (var namespaceDeclaration in namespacesList)
-                        {
-                            xPathCompiler.DeclareNamespace(namespaceDeclaration.Key, namespaceDeclaration.Value);
-                        }
+                        xPathCompiler.DeclareNamespace(namespaceDeclaration.Key, namespaceDeclaration.Value);
                     }
 
                     return xPathCompiler.Compile(expression);

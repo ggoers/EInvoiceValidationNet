@@ -38,7 +38,7 @@ namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
             try
             {
                 var key = Path.GetFullPath(xsdFilePath);
-                var compiledSchemaSetLazy = _compiledXmlSchemaSetCache.GetOrAdd(key, (x) =>
+                var compiledSchemaSetLazy = _compiledXmlSchemaSetCache.GetOrAdd(key, (keyPath) =>
                 {
                     return new Lazy<XmlSchemaSet>(() =>
                     {
@@ -63,7 +63,7 @@ namespace EInvoiceValidationNet.Core.Validation.SchemaValidation
                             DtdProcessing = DtdProcessing.Parse,
                             XmlResolver = null
                         };
-                        using (var schemaReader = XmlReader.Create(xsdFilePath, readerSettings))
+                        using (var schemaReader = XmlReader.Create(keyPath, readerSettings))
                         {
                             schemaSet.Add(null, schemaReader);
                         }
