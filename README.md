@@ -77,5 +77,19 @@ validation steps are separately tested)
 **EInvoiceValidation.XmlProcessing.Tests**
 - tests the adapter implementation
 
-# License
-This Project is free to use and licensed under the MIT license.
+
+# Third-party software and licenses
+
+This project's own source code is licensed under the MIT license (see LICENSE).
+It uses or includes the following third-party components, which are subject to their own licenses:
+
+- **SaxonCS-HE** (Saxonica Ltd.) – used for XSLT 2.0/3.0 transformations and XPath evaluation.
+  Referenced as a NuGet dependency, not redistributed. Licensed under Saxonica's terms
+  (based on the Mozilla Public License 2.0), see https://www.saxonica.com/html/documentation13/conditions.
+  Its own dependencies are licensed under MIT and Apache 2.0.
+- **KoSIT validator framework schemas** (`createReportInput.xsd`, `scenarios.xsd`, `svrl-kosit.xsd`, `xml.xsd`) –
+  © Koordinierungsstelle für IT-Standards (KoSIT), licensed under the Apache License 2.0.
+  Embedded in EInvoiceValidationNet.Core, taken from https://github.com/itplr-kosit/validator.
+- **XRechnung validator configuration** (test data only, not part of the NuGet package) –
+  © Koordinierungsstelle für IT-Standards (KoSIT), licensed under the Apache License 2.0, taken from https://github.com/itplr-kosit/validator-configuration-xrechnung.
+
