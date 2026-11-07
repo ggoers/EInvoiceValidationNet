@@ -12,7 +12,7 @@ It supports the same validator configurations as the original KoSIT Validator.
 You can specify a validator configuration with the scenarios.xml file from the configuration:
 
 ```csharp
-var validator = ValidatorFactory.CreateValidator();
+var validator = new ValidatorFactory().CreateValidator();
 var configuration = ConfigurationBuilder.FromScenariosXml(scenariosXmlPath, configurationRootPath, null);
 var validationResult = validator.Validate(pathToInvoiceXml, configuration);
 ```
@@ -20,7 +20,7 @@ var validationResult = validator.Validate(pathToInvoiceXml, configuration);
 It is also possible to create the validation configuration entirely in code
 using a fluent API:
 ```csharp
-var validator = ValidatorFactory.CreateValidator();
+var validator = new ValidatorFactory().CreateValidator();
 var configurationBuilder = new ConfigurationBuilder();
 //minimal example
 var configuration = configurationBuilder
